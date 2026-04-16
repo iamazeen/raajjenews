@@ -3,6 +3,8 @@ import { CategoryNav } from "@/components/CategoryNav";
 import { hasSupabaseConfig } from "@/lib/supabase";
 import { listCategoriesWithPublishedArticles, listPublishedArticles } from "@/lib/news";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const configured = hasSupabaseConfig();
   const [categories, articles] = await Promise.all([listCategoriesWithPublishedArticles(), listPublishedArticles()]);

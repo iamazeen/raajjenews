@@ -2,6 +2,8 @@ import { ArticleCard } from "@/components/ArticleCard";
 import { CategoryNav } from "@/components/CategoryNav";
 import { listCategoriesWithPublishedArticles, searchPublishedArticles } from "@/lib/news";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   searchParams: {
     q?: string;

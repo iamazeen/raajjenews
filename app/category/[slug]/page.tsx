@@ -3,6 +3,8 @@ import { CategoryNav } from "@/components/CategoryNav";
 import { listCategoriesWithPublishedArticles, listPublishedArticlesByCategoryId } from "@/lib/news";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   params: Promise<{ slug: string }>;
 };

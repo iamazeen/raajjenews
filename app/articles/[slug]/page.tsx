@@ -11,6 +11,8 @@ import {
   listPublishedArticlesByCategoryId
 } from "@/lib/news";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   params: { slug: string };
 };
