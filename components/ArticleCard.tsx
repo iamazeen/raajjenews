@@ -4,6 +4,14 @@ import { formatSiteDate } from "@/lib/dates";
 import { sanguSuruheeClassName } from "@/lib/fonts";
 import type { Article } from "@/lib/types";
 
+function truncateSummary(value: string, maxLength: number) {
+  if (value.length <= maxLength) {
+    return value;
+  }
+
+  return `${value.slice(0, maxLength).trimEnd()}...`;
+}
+
 function formatPublished(value: string | null, language: "dv" | "en") {
   if (!value) {
     return language === "dv" ? "ތާރީޚެއް ނެތް" : "Unscheduled";
@@ -48,6 +56,8 @@ export function ArticleCardWithVariant({
   const articleLanguage = article.language === "dv" ? "dv" : "en";
   const imageUrl = article.featured_image_url;
   const showImage = Boolean(imageUrl);
+  const summaryMaxLength = variant === "feature" ? 240 : 140;
+  const summary = article.summary ? truncateSummary(article.summary, summaryMaxLength) : null;
 
   return (
     <article className={articleClassName} lang={articleLanguage}>
@@ -74,7 +84,7 @@ export function ArticleCardWithVariant({
             {article.title}
           </Link>
         </h2>
-        {article.summary ? <p className={summaryClassName}>{article.summary}</p> : null}
+        {summary ? <p className={summaryClassName}>{summary}</p> : null}
         {variant === "feature" ? <p className={publishedClassName}>{formatPublished(article.published_at, article.language)}</p> : null}
       </div>
     </article>
